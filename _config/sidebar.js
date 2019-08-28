@@ -4,7 +4,7 @@ const pages = config('pages') // Get Pages from config
 export default [
   {
     title: 'qquiz.sidebar.adminGroup',
-    icon: 'fas fa-map-marked-alt',
+    icon: 'fas fa-poll',
     children: [
       pages.qquiz.polls, // poll setup
     ]

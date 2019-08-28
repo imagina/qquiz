@@ -14,8 +14,8 @@ export default {
     layout: require('@imagina/qquiz/_layouts/admin/polls/index').default,
     containerLayout: master,
     title: 'qquiz.sidebar.adminPolls',
-    icon: 'fas fa-map-marked-alt',
+    icon: 'fas fa-poll',
     middleware: [auth,access]
-  },
+  }
 
 }
