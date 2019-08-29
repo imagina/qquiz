@@ -6,5 +6,8 @@ export default {
     untilDay : 'Hasta el día',
     fromTime : 'Desde la hora',
     untilTime : 'Hasta la hora',
+    startDate : 'Fecha inicial',
+    endDate : 'Fecha final',
+    logged: 'Usuario logueado',
   }
 }

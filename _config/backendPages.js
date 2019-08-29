@@ -16,6 +16,28 @@ export default {
     title: 'qquiz.sidebar.adminPolls',
     icon: 'fas fa-poll',
     middleware: [auth,access]
-  }
+  },
+  pollsCreate: {
+    permission: 'iquiz.polls.create',
+    activated: true,
+    path: '/iquiz/polls/create',
+    name: 'qquiz.admin.polls.create',
+    layout: require('@imagina/qquiz/_layouts/admin/polls/form').default,
+    containerLayout: master,
+    title: 'qquiz.sidebar.adminPollsCreate',
+    icon: 'fas fa-poll',
+    middleware: [auth,access]
+  },
+  pollsUpdate: {
+    permission: 'iquiz.polls.edit',
+    activated: true,
+    path: '/iquiz/polls/:id',
+    name: 'qquiz.admin.polls.edit',
+    layout: require('@imagina/qquiz/_layouts/admin/polls/form').default,
+    containerLayout: master,
+    title: 'qquiz.sidebar.adminPollsUpdate',
+    icon: 'fas fa-poll',
+    middleware: [auth,access]
+  },
 
 }
