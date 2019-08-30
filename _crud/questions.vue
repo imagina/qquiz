@@ -7,11 +7,11 @@
     computed: {
       crudData() {
         return {
-          apiRoute: 'apiRoutes.qquiz.polls',
-          permission: 'iquiz.polls',
+          apiRoute: 'apiRoutes.qquiz.questions',
+          permission: 'iquiz.questions',
           create: {
-            title: this.$tr('qquiz.layout.newPoll'),
-            to: 'qquiz.admin.polls.create',
+            title: this.$tr('qquiz.layout.newQuestion'),
+            //to: 'qquiz.admin.questions.create',
           },
           read: {
             columns: [
@@ -40,19 +40,35 @@
                 align: 'left'
               },
             ],
-            requestParams: {include: ''},
-            actions : [
-              {
-                icon : 'fas fa-question-circle',
-                color : 'warning',
-                route : 'qquiz.admin.questions.index'
-              }
-            ]
+            requestParams: {
+              filter: {pollId:this.$route.params.id}
+            }
           },
           update: {
-            to: 'qquiz.admin.polls.edit',
+            //to: 'qquiz.admin.questions.edit',
           },
-          delete: true
+          delete: true,
+          formLeft: {
+            title: {
+              label: this.$tr('ui.form.title'),
+              value: '',
+              type: 'text',
+              isRequired: true,
+              isTranslatable: true,
+            },
+            pollId: {
+              label: this.$tr('qquiz.layout.singlePoll'),
+              value: this.$route.params.id,
+              type: 'select',
+              clearable: false,
+              isRequired: true,
+              loadOptions: {
+                apiRoute: 'apiRoutes.qquiz.polls',
+                select: {label: 'title', id: 'id'},
+                requestParams: {filter: {pollId : this.$route.params.id}}
+              }
+            } 
+          }
         }
       }
     },

@@ -39,5 +39,27 @@ export default {
     icon: 'fas fa-poll',
     middleware: [auth,access]
   },
+  questions: {
+    permission: 'iquiz.questions.manage',
+    activated: true,
+    path: '/iquiz/questions/index/poll/:id',
+    name: 'qquiz.admin.questions.index',
+    layout: require('@imagina/qquiz/_layouts/admin/questions/index').default,
+    containerLayout: master,
+    title: 'qquiz.sidebar.adminQuestions',
+    icon: 'fas fa-question-circle',
+    middleware: [auth,access]
+  },
+  questionsCreate: {
+    permission: 'iquiz.questions.create',
+    activated: true,
+    path: '/iquiz/questions/create',
+    name: 'qquiz.admin.questions.create',
+    layout: require('@imagina/qquiz/_layouts/admin/questions/form').default,
+    containerLayout: master,
+    title: 'qquiz.sidebar.adminQuestionsCreate',
+    icon: 'fas fa-question-circle',
+    middleware: [auth,access]
+  },
 
 }

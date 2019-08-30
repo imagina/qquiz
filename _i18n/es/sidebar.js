@@ -3,4 +3,7 @@ export default {
   adminPolls : 'Lista de encuestas',
   adminPollsCreate : 'Crear Encuesta',
   adminPollsUpdate : 'Actualizar Encuesta',
+  adminQuestions : 'Lista de Preguntas',
+  adminQuestionsCreate : 'Crear Pregunta',
+  adminQuestionsUpdate : 'Actualizar Pregunta',
 }

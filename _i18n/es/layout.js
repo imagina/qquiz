@@ -1,6 +1,8 @@
 export default {
   newPoll : 'Nueva Encuesta',
   updatePoll : 'Actualizar Encuesta',
+  newQuestion : 'Nueva Pregunta',
+  updateQuestion : 'Actualizar Pregunta',
   form : {
     fromDay : 'Desde el día',
     untilDay : 'Hasta el día',
