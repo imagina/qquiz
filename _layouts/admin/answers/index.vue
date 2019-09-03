@@ -5,16 +5,16 @@
       <div class="col-12 col-md-12 q-mb-md">
         <q-btn 
         color="primary"  
-        icon="fas fa-poll" 
+        icon="fas fa-question-circle" 
         size="md" 
-        :label="$tr('qquiz.layout.goPolls')"
-        @click="$router.push({name: 'qquiz.admin.polls.index'})" />
+        :label="$tr('qquiz.layout.goQuestions')"
+        @click="$router.push({name: 'qquiz.admin.questions.index'})" />
       </div>
 
       <!---Form Left-->
       <div class="col-12 col-md-12">
         <!---Component CRUD-->
-        <crud :crud-data="import('@imagina/qquiz/_crud/questions')"/>
+        <crud :crud-data="import('@imagina/qquiz/_crud/answers')"/>
       </div>
 
     </div>
@@ -40,10 +40,10 @@
        //Init
       init() {
         //Search id in params URL
-        console.log('pollId:'+this.$route.params.id)
+        console.log('questionId:'+this.$route.params.id)
         //if (this.$route.params.id) this.itemId = this.$route.params.id
        
-      }
+      },
     }
   }
 </script>

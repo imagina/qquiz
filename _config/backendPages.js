@@ -61,5 +61,16 @@ export default {
     icon: 'fas fa-question-circle',
     middleware: [auth,access]
   },
+  answers: {
+    permission: 'iquiz.answers.manage',
+    activated: true,
+    path: '/iquiz/answers/index/question/:id',
+    name: 'qquiz.admin.answers.index',
+    layout: require('@imagina/qquiz/_layouts/admin/answers/index').default,
+    containerLayout: master,
+    title: 'qquiz.sidebar.adminAnswers',
+    icon: 'fas fa-question-circle',
+    middleware: [auth,access]
+  },
 
 }

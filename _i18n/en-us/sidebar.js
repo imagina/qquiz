@@ -6,4 +6,7 @@ export default {
   adminQuestions : 'Questions List',
   adminQuestionsCreate : 'Create Question',
   adminQuestionsUpdate : 'Update Question',
+  adminAnswers : 'Answers List',
+  adminAnswersCreate : 'Create Answer',
+  adminAnswersUpdate : 'Update Answer',
 }

@@ -9,4 +9,5 @@ export default {
   version: moduleVersion,
   polls: `${urlBase}/polls`,
   questions: `${urlBase}/questions`,
+  answers: `${urlBase}/answers`,
 }

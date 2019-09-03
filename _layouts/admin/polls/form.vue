@@ -211,15 +211,9 @@
             }
             //Request
             this.$crud.show(this.configName, itemId, params).then(response => {
-              //Get categories ID
-              /*
-              let categories = []
-              response.data.categories.forEach(category => {
-                categories.push(category.id)
-              })
-              */
-              //Replace categories to response
-              //response.data.categories = this.$clone(categories)
+              
+              console.log(response.data)
+
               //Set response to form
               this.locale.form = this.$clone(response.data)
               this.loading.page = false
