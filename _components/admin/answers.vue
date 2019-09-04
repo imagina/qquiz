@@ -1,6 +1,6 @@
 <template>
   <q-dialog
-    v-model="customDialogModel"
+    v-model="dialogStatus"
     stack-buttons
     prevent-close
     @ok="onOk"
@@ -26,19 +26,30 @@
 
 <script>
 export default {
+  /*
   props:{
     question:{default:()=>{
       return {}
     }},
     visible: {default: true}
   },
+  */
+  props: [
+    'question','visible'
+  ],
   data () {
-    console.log(this.visible)
-    console.log(this.question)
     return {
-      // model for Dialog example
-      customDialogModel: this.visible,
+      customDialogModel: false,
       name: ''
+    }
+  },
+  computed:{
+    dialogStatus(){
+      console.log('DialogStatus: '+this.visible)
+      return this.visible
+    },
+    changeVisibleStatus(){
+      this.visible = false
     }
   },
   methods: {
@@ -52,7 +63,12 @@ export default {
     onShow () { },
 
     // when it gets hidden
-    onHide () { },
+    onHide () { 
+     //changeVisibleStatus()
+     this.visible = false
+      
+    },
+
 
   }
 }

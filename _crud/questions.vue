@@ -60,6 +60,7 @@
                 icon : 'fas fa-boxes',
                 color : 'deep-orange',
                 action : (params) => {
+                  console.log("click")
                   //console.log(params)
                   this.question = params
                   this.visible = true
