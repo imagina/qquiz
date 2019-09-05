@@ -65,7 +65,7 @@ export default {
     // when it gets hidden
     onHide () { 
      //changeVisibleStatus()
-     this.visible = false
+      this.visible = false
       
     },
 

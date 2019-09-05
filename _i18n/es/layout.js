@@ -8,6 +8,7 @@ export default {
   updateQuestion : 'Actualizar Pregunta',
   goQuestions : 'Ir a Preguntas',
   singleAnswer: 'Respuesta',
+  pluralAnswer: 'Respuestas',
   newAnswer : 'Nueva Respuesta',
   updateAnswer : 'Actualizar Respuesta',
   form : {
