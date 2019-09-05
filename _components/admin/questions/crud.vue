@@ -19,8 +19,8 @@
 </template>
 <script>
   //Component
-  import crudIndex from '@imagina/qquiz/_components/admin/questions/crud/index'
-  import crudForm from '@imagina/qquiz/_components/admin/questions/crud/form'
+  import crudIndex from '@imagina/qquiz/_components/admin/questions/index'
+  import crudForm from '@imagina/qquiz/_components/admin/questions/form'
 
   export default {
     props: {

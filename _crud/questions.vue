@@ -2,9 +2,14 @@
 <script>
   //Component
   //import crud from '@imagina/qcrud/_components/crud'
-  import crudQuestions  from '@imagina/qquiz/_components/admin/questions/crud/crud'
+  //import crudQuestions  from '@imagina/qquiz/_components/admin/questions/crud'
  
   export default {
+    /*
+    components: {
+      crudQuestions
+    },
+    */
     computed: {
       crudData() {
         return {

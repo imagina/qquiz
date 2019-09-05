@@ -17,35 +17,29 @@
         <!--
         <crud :crud-data="import('@imagina/qquiz/_crud/questions')"/>
         -->
-
         <!--
-        <questions />
+        <crudQuestions :crud-data="import('@imagina/qquiz/_crud/questions')"/>
         -->
-
-        
-        <crudQuestions :crud-data="import('@imagina/qquiz/_crud/questions')" />
-        
+       <!--
+       <answers/>
+        -->
 
       </div>
 
       <div class="col-12 col-md-4">
-        <h5>Columna 2</h5>
+        asdsd
       </div>
 
     </div>
   </div>
 </template>
 <script>
-
-  import crudQuestions from '@imagina/qquiz/_components/admin/questions/crud/crud'
-  //import questions from '@imagina/qquiz/_components/admin/questions'
-
+  //import crudQuestions  from '@imagina/qquiz/_components/admin/questions/crud'
+  //import answers  from '@imagina/qquiz/_components/admin/answers'
   export default {
     props: {},
-    components: {
-      //questions,
-      crudQuestions
-    },
+    //components: {crudQuestions},
+    //components: {answers},
     watch: {},
     validations() {
       return {}

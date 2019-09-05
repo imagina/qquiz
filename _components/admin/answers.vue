@@ -1,4 +1,6 @@
 <template>
+  <div>
+  <h4>Componente Answer</h4>
   <q-dialog
     v-model="dialogStatus"
     stack-buttons
@@ -22,6 +24,7 @@
     </template>
 
   </q-dialog>
+  </div>
 </template>
 
 <script>
