@@ -1,15 +1,7 @@
 <template></template>
 <script>
-  //Component
-  //import crud from '@imagina/qcrud/_components/crud'
-  //import crudQuestions  from '@imagina/qquiz/_components/admin/questions/crud'
- 
+  
   export default {
-    /*
-    components: {
-      crudQuestions
-    },
-    */
     computed: {
       crudData() {
         return {
@@ -21,12 +13,14 @@
           },
           read: {
             columns: [
+            /*
               {
                 name: 'id', 
                 label: this.$tr('ui.form.id'), 
                 field: 'id',
                 style: 'width: 50px'
               },
+              */
               {
                 name: 'title', 
                 label: this.$tr('ui.form.title'), 

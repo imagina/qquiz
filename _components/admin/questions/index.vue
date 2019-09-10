@@ -1,151 +1,179 @@
 <template>
-  <div id="componentCrudIndex">
-    <h5>Componente Questions</h5>
-    <!--Content-->
-    <div class="backend-page">
-      <!--Data-->
-      <div class="relative-position col-12" v-if="success">
-        <!--Table-->
-        <q-table
-          :data="table.data"
-          :columns="params.read.columns"
-          :pagination.sync="table.pagination"
-          @request="getData"
-          :filter="table.filter"
-          class="box-table"
-          :hide-header="!showSlotTable.header"
-          :hide-bottom="!showSlotTable.bottom"
-        >
-          <!--Slot Top-->
-          <template slot="top">
-            <!--Table slot left-->
-            <div class="table-top-left col-12 col-md-4 col-xl-3">
-              <!--Search-->
-              <q-search hide-underline clearable v-model="table.filter.search"
-                        @input="getDataTable" class="q-my-xs" v-if="params.read.search !== false"/>
-              <!--Title-->
-              <div class="q-title text-primary ellipsis" v-if="params.read.title || params.read.icon">
-                <q-icon v-if="params.read.icon" class="q-mr-sm" :name="params.read.icon"/>
-                <span v-if="params.read.title" :title="params.read.title">
-                  {{params.read.title}}
-                </span>
-              </div>
-            </div>
-            <!--Table slot Right-->
-            <div class="table-top-right col-12 col-md-8 col-xl-9 text-right">
-              <!--Button new record-->
-              <q-btn icon="fas fa-edit" :label="params.create.title"
-                     :to="params.create.to ? {name : params.create.to} : {}"
-                     @click="params.create.to ? false : $emit('create')"
-                     color="positive" class="q-my-xs"
-                     v-if="params.create && params.hasPermission.create"/>
-              <!--Button toggle filters-->
-              <q-btn icon="fas fa-filter" color="primary" :label="$trp('ui.label.filter')"
-                     :icon-right="`fas fa-${filter.show ? 'caret-up' : 'caret-down'}`"
-                     @click="filter.show = !filter.show" class="q-ml-xs" v-if="filter.available"/>
-              <!--Button refresh data-->
-              <q-btn icon="fas fa-sync-alt" color="info" class="q-ml-xs"
-                     @click="getDataTable(true)">
-                <q-tooltip :delay="300">{{$tr('ui.label.refresh')}}</q-tooltip>
-              </q-btn>
-            </div>
-            <!--Filters-->
-            <div v-if="filter.available" class="table-top-filters col-12 q-my-xs">
-              <!--Collapsible with filters (desktop)-->
-              <q-collapsible v-model="filter.show" class="q-hide q-sm-show"
-                             header-style="display: none">
-                <!--Product Option-->
-                <div :class="`q-mr-xs ${field.type == 'select' ? 'cont-vue-tree' : ''}`"
-                     v-for="(field, key) in params.read.filters">
-                  <dynamic-field v-model="table.filter[field.name || key]" :key="field.name || key"
-                                 @input="getDataTable" :field="field"/>
+
+  <div id="componentCrudIndex" class="row gutter-x-sm">
+
+    <div class="col-12 col-md-7">
+      <q-alert color="primary"  icon="fas fa-question-circle" class="q-mb-sm uppercase">
+        {{$trp('qquiz.layout.question')}}
+      </q-alert>
+      <!--Content-->
+      <div class="backend-page">
+        <!--Data-->
+        <div class="relative-position col-12" v-if="success">
+          <!--Table-->
+          <q-table
+            :data="table.data"
+            :columns="params.read.columns"
+            :pagination.sync="table.pagination"
+            @request="getData"
+            :filter="table.filter"
+            class="box-table"
+            :hide-header="!showSlotTable.header"
+            :hide-bottom="!showSlotTable.bottom"
+          >
+            <!--Slot Top-->
+            <template slot="top">
+              <!--Table slot left-->
+              <div class="table-top-left col-12 col-md-4 col-xl-3">
+                <!--Search-->
+                <q-search hide-underline clearable v-model="table.filter.search"
+                          @input="getDataTable" class="q-my-xs" v-if="params.read.search !== false"/>
+                <!--Title-->
+                <div class="q-title text-primary ellipsis" v-if="params.read.title || params.read.icon">
+                  <q-icon v-if="params.read.icon" class="q-mr-sm" :name="params.read.icon"/>
+                  <span v-if="params.read.title" :title="params.read.title">
+                    {{params.read.title}}
+                  </span>
                 </div>
-              </q-collapsible>
-              <!--Modal with filters (Movile)-->
-              <q-modal v-model="filter.show" class="q-sm-hide backend-page">
-                <q-modal-layout>
-                  <!--Header-->
-                  <q-toolbar slot="header">
-                    <q-toolbar-title class="capitalize">
-                      <q-icon name="fas fa-filter" class="q-mr-sm"/>
-                      {{$trp('ui.label.filter')}}
-                    </q-toolbar-title>
-                    <q-btn flat v-close-overlay icon="fas fa-times"/>
-                  </q-toolbar>
-
-                  <!--Footer-->
-                  <q-toolbar slot="footer" color="white">
-                    <q-toolbar-title></q-toolbar-title>
-                    <!--Button Save-->
-                    <q-btn icon="fas fa-times" color="positive" :label="$tr('ui.label.close')"
-                           :loading="loading" @click="filter.show = false"/>
-                  </q-toolbar>
-
-                  <!--Content-->
-                  <div class="layout-padding relative-position">
-                    <!--load dynamic fields-->
-                    <dynamic-field v-for="(field, key) in params.read.filters"
-                                   v-model="table.filter[field.name || key]" :key="field.name || key"
+              </div>
+              <!--Table slot Right-->
+              <div class="table-top-right col-12 col-md-8 col-xl-9 text-right">
+                <!--Button new record-->
+                <q-btn icon="fas fa-edit" :label="params.create.title"
+                       :to="params.create.to ? {name : params.create.to} : {}"
+                       @click="params.create.to ? false : $emit('create')"
+                       color="positive" class="q-my-xs"
+                       v-if="params.create && params.hasPermission.create"/>
+                <!--Button toggle filters-->
+                <q-btn icon="fas fa-filter" color="primary" :label="$trp('ui.label.filter')"
+                       :icon-right="`fas fa-${filter.show ? 'caret-up' : 'caret-down'}`"
+                       @click="filter.show = !filter.show" class="q-ml-xs" v-if="filter.available"/>
+                <!--Button refresh data-->
+                <q-btn icon="fas fa-sync-alt" color="info" class="q-ml-xs"
+                       @click="getDataTable(true)">
+                  <q-tooltip :delay="300">{{$tr('ui.label.refresh')}}</q-tooltip>
+                </q-btn>
+              </div>
+              <!--Filters-->
+              <div v-if="filter.available" class="table-top-filters col-12 q-my-xs">
+                <!--Collapsible with filters (desktop)-->
+                <q-collapsible v-model="filter.show" class="q-hide q-sm-show"
+                               header-style="display: none">
+                  <!--Product Option-->
+                  <div :class="`q-mr-xs ${field.type == 'select' ? 'cont-vue-tree' : ''}`"
+                       v-for="(field, key) in params.read.filters">
+                    <dynamic-field v-model="table.filter[field.name || key]" :key="field.name || key"
                                    @input="getDataTable" :field="field"/>
                   </div>
-                </q-modal-layout>
-              </q-modal>
+                </q-collapsible>
+                <!--Modal with filters (Movile)-->
+                <q-modal v-model="filter.show" class="q-sm-hide backend-page">
+                  <q-modal-layout>
+                    <!--Header-->
+                    <q-toolbar slot="header">
+                      <q-toolbar-title class="capitalize">
+                        <q-icon name="fas fa-filter" class="q-mr-sm"/>
+                        {{$trp('ui.label.filter')}}
+                      </q-toolbar-title>
+                      <q-btn flat v-close-overlay icon="fas fa-times"/>
+                    </q-toolbar>
+
+                    <!--Footer-->
+                    <q-toolbar slot="footer" color="white">
+                      <q-toolbar-title></q-toolbar-title>
+                      <!--Button Save-->
+                      <q-btn icon="fas fa-times" color="positive" :label="$tr('ui.label.close')"
+                             :loading="loading" @click="filter.show = false"/>
+                    </q-toolbar>
+
+                    <!--Content-->
+                    <div class="layout-padding relative-position">
+                      <!--load dynamic fields-->
+                      <dynamic-field v-for="(field, key) in params.read.filters"
+                                     v-model="table.filter[field.name || key]" :key="field.name || key"
+                                     @input="getDataTable" :field="field"/>
+                    </div>
+                  </q-modal-layout>
+                </q-modal>
+              </div>
+            </template>
+
+            <!--= Custom Columns =-->
+            <q-td slot="body-cell-actions" slot-scope="props" :props="props">
+              <!--Edit button-->
+              <q-btn color="positive" icon="fas fa-pen" size="xs" class="q-px-sm"
+                     v-if="permitAction(props.row).edit"
+                     :to="params.update.to ? {name : params.update.to, params : {id : props.row.id}} : {}"
+                     @click="params.update.to ? false : $emit('update', props.row)">
+                <q-tooltip :delay="300">{{$tr('ui.label.edit')}}</q-tooltip>
+              </q-btn>
+              <!--Delete button-->
+              <q-btn color="negative" icon="fas fa-trash-alt" size="xs" class="q-ml-xs q-px-sm"
+                     v-if="permitAction(props.row).destroy"
+                     @click="itemIdToDelete = props.row; dialogDeleteItem = true">
+                <q-tooltip :delay="300">{{$tr('ui.label.delete')}}</q-tooltip>
+              </q-btn>
+
+              <!-- Btn Answers -->
+              <q-btn color="deep-orange" icon="fas fa-boxes" size="xs" class="q-ml-xs q-px-sm"
+               @click="searchAnswers(props.row)">
+                <q-tooltip :delay="300">{{$trp('qquiz.layout.answer')}}</q-tooltip>
+              </q-btn>
+
+              <!-- Custom Actions -->
+              <q-btn v-for="(action, key) in params.read.actions" size="xs"
+                     v-if="params.read.actions" :key="key" class="q-ml-xs q-px-sm"
+                     :icon="action.icon || ''" :color="action.color || ''"
+                     @click="callCustomAction(action,props.row)"/>
+            </q-td>
+          </q-table>
+
+          <!--Dialog to delete-->
+          <q-dialog v-model="dialogDeleteItem" class="backend-page" prevent-close>
+            <!-- Message -->
+            <div slot="message">
+              <h1 class="q-title text-negative">{{itemIdToDelete.title}}</h1>
+              {{$tr('ui.message.deleteRecord')}}
             </div>
-          </template>
-          <!--= Custom Columns =-->
-          <q-td slot="body-cell-actions" slot-scope="props" :props="props">
-            <!--Edit button-->
-            <q-btn color="positive" icon="fas fa-pen" size="sm"
-                   v-if="permitAction(props.row).edit"
-                   :to="params.update.to ? {name : params.update.to, params : {id : props.row.id}} : {}"
-                   @click="params.update.to ? false : $emit('update', props.row)">
-              <q-tooltip :delay="300">{{$tr('ui.label.edit')}}</q-tooltip>
-            </q-btn>
-            <!--Delete button-->
-            <q-btn color="negative" icon="fas fa-trash-alt" size="sm" class="q-ml-xs"
-                   v-if="permitAction(props.row).destroy"
-                   @click="itemIdToDelete = props.row; dialogDeleteItem = true">
-              <q-tooltip :delay="300">{{$tr('ui.label.delete')}}</q-tooltip>
-            </q-btn>
-            <!-- Custom Actions -->
-            <q-btn v-for="(action, key) in params.read.actions" size="sm"
-                   v-if="params.read.actions" :key="key" class="q-ml-xs"
-                   :icon="action.icon || ''" :color="action.color || ''"
-                   @click="callCustomAction(action,props.row)"/>
-          </q-td>
-        </q-table>
 
-        <!--Dialog to delete-->
-        <q-dialog v-model="dialogDeleteItem" class="backend-page" prevent-close>
-          <!-- Message -->
-          <div slot="message">
-            <h1 class="q-title text-negative">{{itemIdToDelete.title}}</h1>
-            {{$tr('ui.message.deleteRecord')}}
-          </div>
+            <!--Buttons-->
+            <div slot="buttons" slot-scope="props">
+              <!--Button cancel-->
+              <q-btn color="blue-grey" label="Cancel" @click="dialogDeleteItem = false"/>
+              <!--Button confirm delete category-->
+              <q-btn color="negative" icon="fas fa-trash-alt" :loading="loading"
+                     label="Delete" @click="deleteItem()"/>
+            </div>
+          </q-dialog>
 
-          <!--Buttons-->
-          <div slot="buttons" slot-scope="props">
-            <!--Button cancel-->
-            <q-btn color="blue-grey" label="Cancel" @click="dialogDeleteItem = false"/>
-            <!--Button confirm delete category-->
-            <q-btn color="negative" icon="fas fa-trash-alt" :loading="loading"
-                   label="Delete" @click="deleteItem()"/>
-          </div>
-        </q-dialog>
-
-        <!--Loading-->
-        <inner-loading :visible="loading"/>
+          <!--Loading-->
+          <inner-loading :visible="loading"/>
+        </div>
       </div>
+
     </div>
+
+    <div class="col-12 col-md-5">
+      
+      <q-alert color="deep-orange"  icon="fas fa-boxes" class="q-mb-sm uppercase">
+        {{$trp('qquiz.layout.answer')}}
+      </q-alert>
+
+      <crudAnswers :crud-data="import('@imagina/qquiz/_crud/answers')"
+        :questionId="questionIdP"/>
+
+    </div>
+
   </div>
 </template>
 
 <script>
+  import crudAnswers  from '@imagina/qquiz/_components/admin/answers/crud'
   export default {
     props: {
       params: {default: false}
     },
-    components: {},
+    components: {crudAnswers},
     watch: {},
     mounted() {
       this.$nextTick(function () {
@@ -173,7 +201,8 @@
           available: false,
           show: false,
         },
-        dataField: []
+        dataField: [],
+        questionIdP: 0
       }
     },
     computed: {
@@ -329,7 +358,13 @@
         //Check if has redirect to route
         if(action.route)
           this.$router.push({name : action.route, params : row || {}})
+      },
+
+      searchAnswers(row){
+        //console.log(row)
+        this.questionIdP = row.id
       }
+
     }
   }
 </script>
