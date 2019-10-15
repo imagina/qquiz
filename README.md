@@ -1,8 +1,8 @@
-## QQUIZ  | 1.0.0
+## QQUIZ  | 0.0.1
 
 ## Installation
 
-`` npm i @imagina/qquiz@1.0.0 ``
+`` npm i @imagina/qquiz@0.0.1 ``
 
 ## API Routes
 
