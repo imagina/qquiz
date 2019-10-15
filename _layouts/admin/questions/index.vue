@@ -2,7 +2,7 @@
   <div id="pageId">
     <div class="row gutter-x-sm">
       
-      <div class="col-12 col-md-12 q-mb-xl">
+      <div class="col-12 col-md-12 q-my-xl">
         <q-btn 
         color="primary"  
         icon="fas fa-poll" 

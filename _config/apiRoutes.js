@@ -10,4 +10,6 @@ export default {
   polls: `${urlBase}/polls`,
   questions: `${urlBase}/questions`,
   answers: `${urlBase}/answers`,
+  userQuestionAnswers: `${urlBase}/user-question-answers`,
+  userPolls: `${urlBase}/user-polls`,
 }
