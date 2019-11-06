@@ -48,5 +48,5 @@
   }
 </script>
 <style lang="stylus">
-  @import "~variables";
+  //@import "~variables";
 </style>

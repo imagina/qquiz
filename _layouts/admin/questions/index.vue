@@ -12,7 +12,9 @@
       </div>
 
       <div class="col-12">
+      
         <crudQuestions :crud-data="import('@imagina/qquiz/_crud/questions')"/>
+     
       </div>
 
       <!---Form Left-->
@@ -33,6 +35,7 @@
   </div>
 </template>
 <script>
+
   import crudQuestions  from '@imagina/qquiz/_components/admin/questions/crud'
   //import crudAnswers  from '@imagina/qquiz/_components/admin/answers/crud'
   
@@ -66,5 +69,5 @@
   }
 </script>
 <style lang="stylus">
-  @import "~variables";
+  
 </style>

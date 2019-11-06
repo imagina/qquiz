@@ -53,7 +53,9 @@
               label: this.$tr('ui.form.title'),
               value: '',
               type: 'text',
-              isRequired: true,
+              rules: [
+                val => !!val || this.$tr('ui.message.fieldRequired')
+              ],
               isTranslatable: true,
             }
           }

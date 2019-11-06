@@ -1,11 +1,11 @@
 <template>
-  <div>
+  <div class="crudContentPage">
     <!--Dynamic component to get crud data-->
-    <div v-if="componentCrudData" :is="componentCrudData" ref="componentCrudData"/>
+    <div v-if="componentCrudData" :is="componentCrudData" ref="componentCrudData"></div>
     <!--Button Create-->
-    <q-btn icon="fas fa-plus" color="positive"
-           @click="indexEmmitCreate" v-if="justCreate && params.create && hasPermission.create"
-           :label="`${params.create.title || ''}`"/>
+    <q-btn class="btnCreateCrud" icon="fas fa-plus" color="positive" :label="`${params.create.title || ''}`"
+           @click="indexEmmitCreate" v-if="justCreate && params.create && hasPermission.create" size="sm"/>
+    <!--Crud-->
     <div v-if="success">
       <!--Index component-->
       <crud-index :questionIdh="questionId" v-if="params.read && !justCreate" :params="$clone(paramsProps)" ref="crudIndex"
@@ -24,21 +24,21 @@
 
   export default {
     props: {
-      crudData: {default: false},//import of vue with computed
-      justCreate: {type: Boolean, default: false},
+      crudData: { default: false },//import of vue with computed
+      justCreate: { type: Boolean, default: false },
       questionId: {default: 0}
     },
-    components: {crudIndex, crudForm},
+    components: { crudIndex, crudForm },
     watch: {},
-    validations() {
+    validations () {
       return {}
     },
-    mounted() {
+    mounted () {
       this.$nextTick(async function () {
         this.init()
       })
     },
-    data() {
+    data () {
       return {
         componentCrudData: false,//To get crud data from computed
         params: false,
@@ -55,7 +55,7 @@
     },
     computed: {
       //Return has permission
-      hasPermission() {
+      hasPermission () {
         let params = this.$clone(this.params)
         return {
           create: params.permission ? this.$auth.hasAccess(`${params.permission}.create`) : true,
@@ -66,7 +66,7 @@
     },
     methods: {
       //init form
-      async init() {
+      async init () {
         if (this.crudData) {
           //Get crudData
           this.crudData.then((response) => {
@@ -74,38 +74,43 @@
             setTimeout(() => {
               //asing crudData to params
               this.params = this.$refs.componentCrudData.crudData
-
               //check global params
               this.paramsProps = this.$clone(this.params)
               this.paramsProps.hasPermission = this.hasPermission//Add permission validated
               this.success = true//udate success
               this.loading = false //hidden Loading
             }, 100)
-          })
+          }).catch(error => {})
         }
       },
       //watch emit create from index component
-      indexEmmitCreate() {
+      indexEmmitCreate () {
         this.itemIdToEdit = false
         this.fieldData = false
         this.showModal = true
       },
       //watch emit update from index component
-      indexEmmitUpdate(params) {
+      indexEmmitUpdate (params) {
         this.itemIdToEdit = params.id
         if (this.params.field) this.fieldData = params
         this.showModal = true
       },
       //watch emit update from form component
-      formEmmit(type = 'created') {
-        if (this.params.read && !this.justCreate)
+      formEmmit (type = 'created') {
+        if (this.params.read && !this.justCreate) {
           this.$refs.crudIndex.getDataTable(true)
+        }
         this.$emit(type)
       },
     }
-    
   }
 </script>
 <style lang="stylus">
-  @import "~variables";
+  .btnCreateCrud
+    padding 3px 8px
+    .q-icon
+      margin-right 5px
+      font-size 12px
+    .q-btn__content
+      font-size 12px
 </style>
