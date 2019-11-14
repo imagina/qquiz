@@ -68,7 +68,6 @@
   //Plugins
   import {required} from 'vuelidate/lib/validators'
   //Components
-  import locales from '@imagina/qsite/_components/locales'
   import mediaForm from '@imagina/qmedia/_components/form'
   import recursiveList from 'src/components/master/recursiveListSelect'
   import schedulesForm from 'src/components/master/schedules'
@@ -77,7 +76,7 @@
     props: [
       //'pollIDP'
     ],
-    components: {locales, mediaForm, recursiveList, schedulesForm},
+    components: {mediaForm, recursiveList, schedulesForm},
     watch: {},
     validations() {
       return this.getObjectValidation()

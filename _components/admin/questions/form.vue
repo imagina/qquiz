@@ -69,7 +69,6 @@
 
 <script>
   //Components
-  import locales from '@imagina/qsite/_components/locales'
   import recursiveSelect from 'src/components/master/recursiveListSelect'
 
   export default {
@@ -80,7 +79,7 @@
       params: { default: false }
     },
     components: {
-      recursiveSelect, locales
+      recursiveSelect
     },
     watch: {
       value (newValue) {
