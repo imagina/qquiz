@@ -1,40 +1,28 @@
 <template></template>
 <script>
   export default {
+    data() {
+      return {
+        crudId: this.$uid()
+      }
+    },
     computed: {
       crudData() {
         return {
+          crudId: this.crudId,
           apiRoute: 'apiRoutes.qquiz.answers',
           permission: 'iquiz.answers',
           create: {
-            title: this.$tr('qquiz.layout.newAnswer'),
-            //to: 'qquiz.admin.questions.create',
+            title: this.$tr('qquiz.layout.newAnswer')
           },
           read: {
             columns: [
-              /*
-              {
-                name: 'id', 
-                label: this.$tr('ui.form.id'), 
-                field: 'id',
-                style: 'width: 50px'
-              },
-              */
               {
                 name: 'title', 
                 label: this.$tr('ui.form.title'), 
                 field: 'title', 
                 align: 'rigth'
               },
-              /*
-              {
-                name: 'created_at', 
-                label: this.$tr('ui.form.createdAt'), 
-                field: 'createdAt', 
-                align: 'left',
-                format: val => val ? this.$trd(val) : '-',
-              },
-              */
               {
                 name: 'actions', 
                 label: this.$tr('ui.form.actions'), 
@@ -47,20 +35,25 @@
             //to: 'qquiz.admin.questions.edit',
           },
           delete: true,
-          
-           formLeft: {
+          formLeft: {
             title: {
-              label: this.$tr('ui.form.title'),
               value: '',
-              type: 'text',
-              rules: [
-                val => !!val || this.$tr('ui.message.fieldRequired')
-              ],
+              type: 'input',
               isTranslatable: true,
-            }
+              props: {
+                label: `${this.$tr('ui.form.title')}*`,
+                rules: [
+                  val => !!val || this.$tr('ui.message.fieldRequired')
+                ],
+              }    
+            },
           }
           
         }
+      },
+      //Crud info
+      crudInfo() {
+        return this.$store.state.qcrudComponent.component[this.crudId] || {}
       }
     },
   }
