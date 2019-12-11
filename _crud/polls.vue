@@ -44,9 +44,7 @@
                 align: 'left'
               },
             ],
-            requestParams: {
-              filter: {storeId : this.$store.state.qmarketplaceStores.storeSelected}
-            },
+            requestParams: {},
             actions : [
               {
                 icon : 'fas fa-question-circle',
@@ -81,25 +79,6 @@
                 label: `${this.$tr('ui.form.description')}`
               }
             }
-            /*
-            storeId:{
-              value: parseInt(this.$store.state.qmarketplaceStores.storeSelected),
-              type: 'select',
-              loadOptions: {
-                apiRoute: 'apiRoutes.qmarketplace.store',
-                select: {label: 'name', id: 'id'},
-                requestParams: {filter: {storeId : this.$store.state.qmarketplaceStores.storeSelected}}
-              },
-              props: {
-                label: 'Tienda',
-                rules: [
-                  val => !!val || this.$tr('ui.message.fieldRequired')
-                ],
-              },
-              permission: 'marketplace.stores.manage'
-            }
-            */
-           
           },
           formRight: {
             status: {
