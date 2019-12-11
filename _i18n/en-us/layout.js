@@ -17,7 +17,8 @@ export default {
     untilTime : 'Until time',
     startDate : 'Start date',
     endDate : 'End date',
-    logged: 'Logged user'
+    logged: 'Logged user',
+    systemName: 'System Name',
   },
 
 }

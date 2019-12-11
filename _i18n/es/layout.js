@@ -18,5 +18,6 @@ export default {
     startDate : 'Fecha inicial',
     endDate : 'Fecha final',
     logged: 'Usuario logueado',
+    systemName: 'Nombre en Sistema',
   }
 }

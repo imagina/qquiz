@@ -31,6 +31,12 @@
                 align: 'rigth'
               },
               {
+                name: 'systemName',
+                label: this.$tr('qquiz.layout.form.systemName'),
+                field: 'systemName',
+                align: 'left'
+              },
+              {
                 name: 'created_at', 
                 label: this.$tr('ui.form.createdAt'), 
                 field: 'createdAt', 
@@ -70,6 +76,16 @@
                   val => !!val || this.$tr('ui.message.fieldRequired')
                 ],
               }    
+            },
+            systemName: {
+              value: null,
+              type: 'input',
+              props: {
+                label: `${this.$tr('qquiz.layout.form.systemName')} *`,
+                rules: [
+                  val => !!val || this.$tr('ui.message.fieldRequired')
+                ]
+              }
             },
             description: {
               value: '',
