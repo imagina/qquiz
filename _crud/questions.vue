@@ -38,6 +38,7 @@
           },
           delete: true,
           formLeft: {
+            pollId: {value: this.$route.params.id},
             title: {
               value: '',
               type: 'input',
@@ -49,6 +50,7 @@
                 ],
               }    
             },
+            /*
             pollId: {
               value: this.$route.params.id,
               type: 'select',
@@ -65,7 +67,40 @@
                 ],
               },
             } 
-          }
+            */
+          },
+          formRight: {
+            status: {
+              value: 0,
+              type: 'select',
+              props: {
+                label: `${this.$tr('ui.form.status')}:`,
+                rules: [
+                  val => !!val || this.$tr('ui.message.fieldRequired')
+                ],
+                options: [
+                  {label: this.$tr('ui.label.enabled'), value: '1'},
+                  {label: this.$tr('ui.label.disabled'), value: '0'},
+                ],
+              },
+            },
+            startDate: {
+              value: '',
+              type: 'date',
+              props: {
+                label: this.$tr('qquiz.layout.form.startDate'),
+              }
+            },
+            endDate: {
+              label: this.$tr('qquiz.layout.form.endDate'),
+              value: '',
+              type: 'date',
+              props: {
+                label: this.$tr('qquiz.layout.form.endDate'),
+              }
+            },
+          },
+
         }
       },
       //Crud info
