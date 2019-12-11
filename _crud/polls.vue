@@ -80,7 +80,8 @@
               props: {
                 label: `${this.$tr('ui.form.description')}`
               }
-            },
+            }
+            /*
             storeId:{
               value: parseInt(this.$store.state.qmarketplaceStores.storeSelected),
               type: 'select',
@@ -97,6 +98,7 @@
               },
               permission: 'marketplace.stores.manage'
             }
+            */
            
           },
           formRight: {
