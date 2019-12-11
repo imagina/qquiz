@@ -47,7 +47,23 @@
                 ],
               }    
             },
-          }
+          },
+          formRight: {
+            status: {
+              value: 0,
+              type: 'select',
+              props: {
+                label: `${this.$tr('ui.form.status')}:`,
+                rules: [
+                  val => !!val || this.$tr('ui.message.fieldRequired')
+                ],
+                options: [
+                    {label: this.$tr('ui.label.enabled'), value: '1'},
+                    {label: this.$tr('ui.label.disabled'), value: '0'},
+                  ],
+                },
+              },
+          },
           
         }
       },
